@@ -4,9 +4,10 @@ import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
 import SidebarChat from './SidebarChat'
 import db from './firebase'
+import { useStateValue } from './StateProvider'
 
 function Sidebar() {
-
+    const [{ user }] = useStateValue()
     const [rooms, setRooms] = useState([])
 
     useEffect(() => {
@@ -23,7 +24,7 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <Avatar />
+                <Avatar  src={user?.photoURL}/>
                 <div className="sidebar__headerRight">
                     <IconButton>
                         <DonutLarge />
