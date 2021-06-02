@@ -15,10 +15,10 @@ function SidebarChat({ id, name, addNewChat }) {
             .doc(id)
             .collection("messages")
             .orderBy("timestamp", "desc")
-            .onSnapshot((snapshot) => 
+            .onSnapshot((snapshot) => {
                     setMessages(snapshot.docs.map((doc) => 
                         doc.data()))
-            );
+            });
         }
     }, [id]);
 
@@ -27,7 +27,7 @@ function SidebarChat({ id, name, addNewChat }) {
     }, []);
 
     const createChat = () => {
-        const roomName = prompt("Please enter for chat");
+        const roomName = prompt("Please enter name for chat");
 
         if (roomName) {
            db.collection('rooms').add({
@@ -38,12 +38,12 @@ function SidebarChat({ id, name, addNewChat }) {
     };
 
     return !addNewChat ?(
-        <Link to={`/rooms/${id}`}>
+        <Link to={`/rooms/${id}`} key={id}>
         <div className="sidebarChat">
             <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
             <div className="sidebarChat__info">
                 <h2>{name}</h2>
-                <p>{console.log(messages[0])}</p>
+                <p>{messages[0]?.message}</p>
             </div>
         </div>
         </Link>

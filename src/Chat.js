@@ -55,7 +55,7 @@ function Chat() {
                     <p> last seen{" "}
                         {new Date(
                             messages[messages.length - 1]?.timestamp?.toDate()
-                        ).toUTCString}
+                        ).toUTCString()}
                     </p>
                 </div>
 
